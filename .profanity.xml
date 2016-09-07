@@ -21,7 +21,7 @@
     <key id='ctrl+left' action='cursor_word_left'/>
     <key id='ctrl+right' action='cursor_word_right'/>
     <key id='home' action='cursor_home'/>
-    <key id='winend' action='cursor_end'/>
+    <key id='win_end' action='cursor_end'/>
     <key id='backspace' action='cursor_backspace'/>
     <key id='win_backspace' action='cursor_backspace'/>
     <key id='ctrl+?' action='cursor_backspace'/>
