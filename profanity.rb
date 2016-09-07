@@ -430,7 +430,7 @@ WINDOWS = Hash.new
 SCROLL_WINDOW = Array.new
 
 def add_prompt(window, prompt_text, cmd="")
-  window.add_string("#{prompt_text}#{cmd}", [ h={ :start => 0, :end => (prompt_text.length + cmd.length), :fg => '555555' } ])
+	window.add_string("#{prompt_text}#{cmd}", [ h={ :start => 0, :end => (prompt_text.length + cmd.length), :fg => '555555' } ])
 end
 
 for arg in ARGV
@@ -657,6 +657,7 @@ key_name = {
 	'insert'    => 331,
 	'page_down' => 338,
 	'page_up'   => 339,
+	'win_end'   => 358,
 	'end'       => 360,
 	'resize'    => 410,
 	'ctrl+delete' => 513,
@@ -1850,20 +1851,9 @@ Thread.new {
 								end
 							end
 						end
-					elsif xml =~ /^<progressBar id='(.*?)' value='[0-9]+' text='\1 (\-?[0-9]+)\/([0-9]+)'/
+					elsif xml =~/^<progressBar id='(.*?)' value='[0-9]+' text='.* ([0-9]+)%/
 						if window = progress_handler[$1]
-							if window.update($2.to_i, $3.to_i)
-								need_update = true
-							end
-						end
-					elsif xml =~ /^<progressBar id='encumlevel' value='([0-9]+)' text='(.*?)'/
-						if window = progress_handler['encumbrance']
-							if $2 == 'Overloaded'
-								value = 110
-							else
-								value = $1.to_i
-							end
-							if window.update(value, 110)
+							if window.update($2.to_i, 100)
 								need_update = true
 							end
 						end
