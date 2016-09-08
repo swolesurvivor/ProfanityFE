@@ -39,7 +39,7 @@ Curses.noecho
 
 class TextWindow < Curses::Window
 	attr_reader :color_stack, :buffer
-	attr_accessor :scrollbar, :indent_word_wrap, :layout
+	attr_accessor :scrollbar, :indent_word_wrap, :layout, :time_stamp
 	@@list = Array.new
 
 	def TextWindow.list
@@ -89,6 +89,7 @@ class TextWindow < Curses::Window
 		#
 		# word wrap string, split highlights if needed so each wrapped line is independent, update buffer, update window if needed
 		#
+		string += "[#{Time.now.hour}:#{Time.now.minute}]" if @time_stamp
 		while (line = string.slice!(/^.{2,#{maxx-1}}(?=\s|$)/)) or (line = string.slice!(0,(maxx-1)))
 			line_colors = Array.new
 			for h in string_colors
@@ -856,6 +857,7 @@ load_layout = proc { |layout_id|
 							window.layout = [ e.attributes['height'], e.attributes['width'], e.attributes['top'], e.attributes['left'] ]
 							window.scrollok(true)
 							window.max_buffer_size = e.attributes['buffer-size'] || 1000
+							window.time_stamp = e.attributes['timestamp']
 							e.attributes['value'].split(',').each { |str|
 								stream_handler[str] = window
 							}

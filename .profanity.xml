@@ -1,17 +1,17 @@
-<settings>            
+<settings>
     <highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
     <highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
     <highlight fg='0000ff'>^\[DRPrime\]</highlight>
     <highlight fg='008000'>^\[code\]</highlight>
     <highlight fg='808000'>^\[drscripts\]</highlight>
     <highlight fg='ffffff'>^\[Private(?:To)?\]</highlight>
-    <highlight fg='008000'>^--- Lich:.*</highlight>    
+    <highlight fg='008000'>^--- Lich:.*</highlight>
     <preset id='whisper' fg='66ff66'/>
     <preset id='speech' fg='66ff66'/>
     <preset id='roomName' fg='ffffff'/>
     <preset id='monsterbold' fg='d2bc2a'/>
     <preset id='familiar' bg='00001a'/>
-    <preset id='thoughts' bg='001a00'/>    
+    <preset id='thoughts' bg='001a00'/>
     <key id='alt'>
         <key id='f' macro='something'/>
     </key>
@@ -38,22 +38,22 @@
     <key id='resize' action='resize'/>
     <key id='ctrl+1' macro='\xstance defensive\r'/>
     <key id='ctrl+2' macro='\x;e 4.times{ start_script("spin", ["burlap"]); pause 0.5 while Script.running?("spin"); }; 2.times{ start_script("weave-cloth"); pause 0.5 while Script.running?("weave-cloth"); }'/>
-    <key id='ctrl+3' macro='\x;e loop do waitfor("DECLINE"); fput("accept"); fput("stow right"); end'/>    
-    <key id='ctrl+4' macro='\x;e loop do start_script("update-shops",[""]); pause 60*60; end'/>        
+    <key id='ctrl+3' macro='\x;e loop do waitfor("DECLINE"); fput("accept"); fput("stow right"); end'/>
+    <key id='ctrl+4' macro='\x;e loop do start_script("update-shops",[""]); pause 60*60; end'/>
     <layout id='default'>
-        <window class='text' top='0' left='0' height='8' width='80' value='lnet,thoughts,voln' buffer-size='1000' />        
-        <window class='text' top='0' left='cols-(cols-80)' height='8' width='cols-80' value='talk' buffer-size='1000' />        
+        <window class='text' top='0' left='0' height='8' width='80' value='lnet,thoughts,voln' buffer-size='1000' timestamp='true' />
+        <window class='text' top='0' left='cols-(cols-80)' height='8' width='cols-80' value='talk' buffer-size='1000' timestamp='true' />
         <window class='text' top='9' left='12' width='cols-12' height='lines-10' value='main' buffer-size='2000' />
         <window class='text' top='10' left='0' width='11' height='lines-31' value='death,logons' buffer-size='500' />
 
         <window class='indicator' top='lines-1' left='12' height='1' width='1' label='&gt;' value='prompt' fg='444444,44444'/>
         <window class='command' top='lines-1' left='13' width='cols-13' height='1' />
-        
+
         <window class='progress' top='lines-9' left='0' width='11' height='1' label='health:' value='health' bg='004800,003300'/>
         <window class='progress' top='lines-8' left='0' width='11' height='1' label='spirit:' value='spirit' bg='333300,222200'/>
         <window class='progress' top='lines-7' left='0' width='11' height='1' label='mana:' value='mana' bg='0000a0,000055'/>
-        <window class='progress' top='lines-6' left='0' width='11' height='1' label='stam:' value='stamina' bg='003333,002222'/>        
-        <window class='progress' top='lines-5' left='0' width='11' height='1' label='conc:' value='concentration' bg='003333,002222'/>        
+        <window class='progress' top='lines-6' left='0' width='11' height='1' label='stam:' value='stamina' bg='003333,002222'/>
+        <window class='progress' top='lines-5' left='0' width='11' height='1' label='conc:' value='concentration' bg='003333,002222'/>
 
         <window class='countdown' top='lines-2' left='0' width='11' height='1' label='stun:' value='stunned' fg='444444,dddddd' bg='nil,aa0000'/>
         <window class='countdown' top='lines-1' left='0' width='11' height='1' label='rndtime:' value='roundtime' fg='444444,dddddd,dddddd,dddddd' bg='nil,aa0000,0000aa'/>
