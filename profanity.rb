@@ -225,7 +225,7 @@ class ProgressWindow < Curses::Window
 		@label = String.new
 		@fg = [ ]
 		@bg = [ '0000aa', '000055' ]
-		@value = 0
+		@value = 100
 		@max_value = 100
 		@@list.push(self)
 		super(*args)
