@@ -1,17 +1,18 @@
 <settings>
-    <highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
-    <highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
-    <highlight fg='0000ff'>^\[DRPrime\]</highlight>
-    <highlight fg='008000'>^\[code\]</highlight>
-    <highlight fg='808000'>^\[drscripts\]</highlight>
-    <highlight fg='ffffff'>^\[Private(?:To)?\]</highlight>
-    <highlight fg='008000'>^--- Lich:.*</highlight>
-    <preset id='whisper' fg='66ff66'/>
-    <preset id='speech' fg='66ff66'/>
-    <preset id='roomName' fg='ffffff'/>
-    <preset id='monsterbold' fg='d2bc2a'/>
-    <preset id='familiar' bg='00001a'/>
-    <preset id='thoughts' bg='001a00'/>
+<!--Windows terminal color codes '000000', '800000', '008000', '808000', '000080', '800080', '008080', 'c0c0c0', '808080', 'ff0000', '00ff00', 'ffff00', '0000ff', 'ff00ff', '00ffff', 'ffffff',-->
+    <highlight fg='c0c0c0'>^\[.*?\](?:>|&gt;).*$</highlight>
+    <highlight fg='c0c0c0'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
+    <highlight fg='00ff00'>^\[DRPrime\]</highlight>
+    <highlight fg='ffff00'>^\[code\]</highlight>
+    <highlight fg='ffff00'>^\[drscripts\]</highlight>
+    <highlight fg='0000ff'>^\[Private(?:To)?\]</highlight>
+    <highlight fg='0000ff'>^--- Lich:.*</highlight>
+    <preset id='whisper' fg='ffff00'/>
+    <preset id='speech' fg='ffff00'/>
+    <preset id='roomName' fg='00ff00'/>
+    <preset id='monsterbold' fg='ffff00'/>
+    <preset id='familiar' bg='008080'/>
+    <preset id='thoughts' bg='008080'/>
     <key id='alt'>
         <key id='f' macro='something'/>
     </key>
@@ -51,36 +52,36 @@
     <key id='ctrl+4' macro='\x;e loop do start_script("update-shops",[""]); pause 60*60; end'/>
     <layout id='default'>
         <window class='text' top='0' left='0' height='8' width='80' value='lnet,thoughts,voln' buffer-size='1000' timestamp='true' />
-        <window class='text' top='0' left='cols-(cols-80)' height='8' width='cols-80' value='talk' buffer-size='1000' timestamp='true' />
+        <window class='text' top='0' left='cols-(cols-80)' height='8' width='cols-80' value='talk,whispers' buffer-size='1000' timestamp='true' />
         <window class='text' top='9' left='12' width='cols-12' height='lines-10' value='main' buffer-size='2000' />
         <window class='text' top='10' left='0' width='11' height='lines-31' value='death,logons' buffer-size='500' />
 
-        <window class='indicator' top='lines-1' left='12' height='1' width='1' label='&gt;' value='prompt' fg='444444,44444'/>
+        <window class='indicator' top='lines-1' left='12' height='1' width='1' label='&gt;' value='prompt' fg='ffff00,ffff00'/>
         <window class='command' top='lines-1' left='13' width='cols-13' height='1' />
 
-        <window class='progress' top='lines-9' left='0' width='11' height='1' label='health:' value='health' bg='004800,003300'/>
-        <window class='progress' top='lines-8' left='0' width='11' height='1' label='spirit:' value='spirit' bg='333300,222200'/>
-        <window class='progress' top='lines-7' left='0' width='11' height='1' label='mana:' value='mana' bg='0000a0,000055'/>
-        <window class='progress' top='lines-6' left='0' width='11' height='1' label='stam:' value='stamina' bg='003333,002222'/>
-        <window class='progress' top='lines-5' left='0' width='11' height='1' label='conc:' value='concentration' bg='003333,002222'/>
+        <window class='progress' top='lines-9' left='0' width='11' height='1' label='health:' value='health' fg='800080' bg='0000ff,000000'/>
+        <window class='progress' top='lines-8' left='0' width='11' height='1' label='spirit:' value='spirit' fg='800080' bg='ffff00,000000'/>
+        <window class='progress' top='lines-7' left='0' width='11' height='1' label='mana:' value='mana' fg='800080' bg='ff0000,000000'/>
+        <window class='progress' top='lines-6' left='0' width='11' height='1' label='stam:' value='stamina' fg='800080' bg='00ffff,000000'/>
+        <window class='progress' top='lines-5' left='0' width='11' height='1' label='conc:' value='concentration' fg='800080' bg='008000,000000'/>
 
-        <window class='countdown' top='lines-2' left='0' width='11' height='1' label='stun:' value='stunned' fg='444444,dddddd' bg='nil,aa0000'/>
-        <window class='countdown' top='lines-1' left='0' width='11' height='1' label='rndtime:' value='roundtime' fg='444444,dddddd,dddddd,dddddd' bg='nil,aa0000,0000aa'/>
+        <window class='countdown' top='lines-2' left='0' width='11' height='1' label='stun:' value='stunned' fg='808080,ffffff' bg='nil,ff0000'/>
+        <window class='countdown' top='lines-1' left='0' width='11' height='1' label='rndtime:' value='roundtime' fg='808080,ffffff,ffffff,ffffff' bg='nil,ff0000,0000ff'/>
 
-        <window class='indicator' top='lines-15' left='1' height='1' width='1' label='^' value='compass:up' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-14' left='1' height='1' width='1' label='o' value='compass:out' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-13' left='1' height='1' width='1' label='v' value='compass:down' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-15' left='5' height='1' width='1' label='*' value='compass:nw' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-14' left='5' height='1' width='1' label='&lt;' value='compass:w' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-13' left='5' height='1' width='1' label='*' value='compass:sw' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-15' left='7' height='1' width='1' label='^' value='compass:n' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-13' left='7' height='1' width='1' label='v' value='compass:s' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-15' left='9' height='1' width='1' label='*' value='compass:ne' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-14' left='9' height='1' width='1' label='&gt;' value='compass:e' fg='444444,ffff00'/>
-        <window class='indicator' top='lines-13' left='9' height='1' width='1' label='*' value='compass:se' fg='444444,ffff00'/>
+        <window class='indicator' top='lines-15' left='1' height='1' width='1' label='^' value='compass:up' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-14' left='1' height='1' width='1' label='o' value='compass:out' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-13' left='1' height='1' width='1' label='v' value='compass:down' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-15' left='5' height='1' width='1' label='*' value='compass:nw' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-14' left='5' height='1' width='1' label='&lt;' value='compass:w' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-13' left='5' height='1' width='1' label='*' value='compass:sw' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-15' left='7' height='1' width='1' label='^' value='compass:n' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-13' left='7' height='1' width='1' label='v' value='compass:s' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-15' left='9' height='1' width='1' label='*' value='compass:ne' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-14' left='9' height='1' width='1' label='&gt;' value='compass:e' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-13' left='9' height='1' width='1' label='*' value='compass:se' fg='808080,ffff00'/>
 
-        <window class='indicator' top='lines-17' left='0' height='1' width='3' label='psn' value='poisoned' fg='444444,ff0000'/>
-        <window class='indicator' top='lines-17' left='4' height='1' width='3' label='dis' value='diseased' fg='444444,ff0000'/>
-        <window class='indicator' top='lines-17' left='8' height='1' width='3' label='bld' value='bleeding' fg='444444,ff0000'/>
+        <window class='indicator' top='lines-17' left='0' height='1' width='3' label='psn' value='poisoned' fg='808080,ff0000'/>
+        <window class='indicator' top='lines-17' left='4' height='1' width='3' label='dis' value='diseased' fg='808080,ff0000'/>
+        <window class='indicator' top='lines-17' left='8' height='1' width='3' label='bld' value='bleeding' fg='808080,ff0000'/>
     </layout>
 </settings>
