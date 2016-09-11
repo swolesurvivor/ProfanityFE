@@ -448,6 +448,7 @@ for arg in ARGV
 		puts "   --default-background-color-id=<id>"
 		puts "   --custom-colors=<on|off>"
 		puts "   --settings-file=<filename>"
+		puts "   --log-name=<name>"
 		puts ""
 		exit
 	elsif arg =~ /^\-\-port=([0-9]+)$/
@@ -461,10 +462,12 @@ for arg in ARGV
 		CUSTOM_COLORS = fix_setting[$1]
 	elsif arg =~ /^\-\-settings\-file=(.*?)$/
 		SETTINGS_FILENAME = $1
+	elsif arg =~ /^\-\-log\-name=(.*?)$/
+		LOG_FILENAME = $1
 	end
 end
 
-logger = Logger.new("profanity#{PORT}-game.log", 'daily')
+logger = Logger.new("profanity#{LOG_FILENAME || PORT}-game.log", 'daily')
 
 logger.formatter = proc do |_, datetime, _, msg|
 	"#{datetime}:#{msg}\n"
