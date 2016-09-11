@@ -24,12 +24,13 @@
 
 =end
 
-$version = 0.4
+$version = 0.5
 
 require 'thread'
 require 'socket'
 require 'rexml/document'
 require 'curses'
+require 'logger'
 include Curses
 
 Curses.init_screen
@@ -39,7 +40,7 @@ Curses.noecho
 
 class TextWindow < Curses::Window
 	attr_reader :color_stack, :buffer
-	attr_accessor :scrollbar, :indent_word_wrap, :layout, :time_stamp
+	attr_accessor :scrollbar, :indent_word_wrap, :layout, :time_stamp, :logger
 	@@list = Array.new
 
 	def TextWindow.list
@@ -89,6 +90,9 @@ class TextWindow < Curses::Window
 		#
 		# word wrap string, split highlights if needed so each wrapped line is independent, update buffer, update window if needed
 		#
+		if @logger && string && !string.chomp.empty? && '>' != string
+			@logger.info string
+		end
 		string += " [#{Time.now.hour.to_s.rjust(2,'0')}:#{Time.now.min.to_s.rjust(2,'0')}]" if @time_stamp && string && !string.chomp.empty?
 		while (line = string.slice!(/^.{2,#{maxx-1}}(?=\s|$)/)) or (line = string.slice!(0,(maxx-1)))
 			line_colors = Array.new
@@ -459,6 +463,14 @@ for arg in ARGV
 		SETTINGS_FILENAME = $1
 	end
 end
+
+logger = Logger.new("profanity#{PORT}-game.log", 'daily')
+
+logger.formatter = proc do |_, datetime, _, msg|
+	"#{datetime}:#{msg}\n"
+end
+
+logger.sev_threshold = Logger::INFO
 
 def log(value)
 		File.open('profanity.log', 'a') { |f| f.puts value }
@@ -868,6 +880,7 @@ load_layout = proc { |layout_id|
 							window.scrollok(true)
 							window.max_buffer_size = e.attributes['buffer-size'] || 1000
 							window.time_stamp = e.attributes['timestamp']
+							window.logger = logger if e.attributes['log']
 							e.attributes['value'].split(',').each { |str|
 								stream_handler[str] = window
 							}
@@ -2048,4 +2061,5 @@ rescue
 ensure
 	server.close rescue()
 	Curses.close_screen
+
 end
