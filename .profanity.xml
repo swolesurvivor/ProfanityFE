@@ -71,14 +71,14 @@
         <window class='indicator' top='lines-15' left='1' height='1' width='1' label='^' value='compass:up' fg='808080,ffff00'/>
         <window class='indicator' top='lines-14' left='1' height='1' width='1' label='o' value='compass:out' fg='808080,ffff00'/>
         <window class='indicator' top='lines-13' left='1' height='1' width='1' label='v' value='compass:down' fg='808080,ffff00'/>
-        <window class='indicator' top='lines-15' left='5' height='1' width='1' label='*' value='compass:nw' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-15' left='5' height='1' width='1' label='\' value='compass:nw' fg='808080,ffff00'/>
         <window class='indicator' top='lines-14' left='5' height='1' width='1' label='&lt;' value='compass:w' fg='808080,ffff00'/>
-        <window class='indicator' top='lines-13' left='5' height='1' width='1' label='*' value='compass:sw' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-13' left='5' height='1' width='1' label='/' value='compass:sw' fg='808080,ffff00'/>
         <window class='indicator' top='lines-15' left='7' height='1' width='1' label='^' value='compass:n' fg='808080,ffff00'/>
         <window class='indicator' top='lines-13' left='7' height='1' width='1' label='v' value='compass:s' fg='808080,ffff00'/>
-        <window class='indicator' top='lines-15' left='9' height='1' width='1' label='*' value='compass:ne' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-15' left='9' height='1' width='1' label='/' value='compass:ne' fg='808080,ffff00'/>
         <window class='indicator' top='lines-14' left='9' height='1' width='1' label='&gt;' value='compass:e' fg='808080,ffff00'/>
-        <window class='indicator' top='lines-13' left='9' height='1' width='1' label='*' value='compass:se' fg='808080,ffff00'/>
+        <window class='indicator' top='lines-13' left='9' height='1' width='1' label='\' value='compass:se' fg='808080,ffff00'/>
 
         <window class='indicator' top='lines-17' left='0' height='1' width='3' label='psn' value='poisoned' fg='808080,ff0000'/>
         <window class='indicator' top='lines-17' left='4' height='1' width='3' label='dis' value='diseased' fg='808080,ff0000'/>
