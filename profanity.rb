@@ -24,7 +24,7 @@
 
 =end
 
-$version = 0.5
+$version = 0.5.1
 
 require 'thread'
 require 'socket'
@@ -438,6 +438,7 @@ def add_prompt(window, prompt_text, cmd="")
 	window.add_string("#{prompt_text}#{cmd}", [ h={ :start => 0, :end => (prompt_text.length + cmd.length), :fg => '555555' } ])
 end
 
+LOG_DIR = '.'
 for arg in ARGV
 	if arg =~ /^\-\-help|^\-h|^\-\?/
 		puts ""
@@ -449,6 +450,7 @@ for arg in ARGV
 		puts "   --custom-colors=<on|off>"
 		puts "   --settings-file=<filename>"
 		puts "   --log-name=<name>"
+		puts "   --log-dir=<directory>"
 		puts ""
 		exit
 	elsif arg =~ /^\-\-port=([0-9]+)$/
@@ -464,10 +466,13 @@ for arg in ARGV
 		SETTINGS_FILENAME = $1
 	elsif arg =~ /^\-\-log\-name=(.*?)$/
 		LOG_FILENAME = $1
+	elsif arg =~ /^\-\-log\-dir=(.*?)$/
+		LOG_DIR = $1
 	end
 end
 
-logger = Logger.new("profanity#{LOG_FILENAME || PORT}-game.log", 'daily')
+file_name = "profanity#{LOG_FILENAME || PORT}-game.log"
+logger = Logger.new(File.join(LOG_DIR, file_name), 'daily')
 
 logger.formatter = proc do |_, datetime, _, msg|
 	"#{datetime}:#{msg}\n"
