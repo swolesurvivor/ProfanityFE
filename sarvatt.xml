@@ -1,0 +1,176 @@
+<!DOCTYPE highlight [ 
+  <!ENTITY material-green "1B5E20">
+  <!ENTITY material-purple "311B92">
+  <!ENTITY material-grey900 "212121">
+  <!ENTITY material-bluegrey "546E7A">
+  <!ENTITY monokai-magenta "f92672">
+  <!ENTITY monokai-blue "66D9EF">
+  <!ENTITY black "000000">
+  <!ENTITY blue "0000ff">
+  <!ENTITY green "00ff00">
+  <!ENTITY red "ff0000">
+  <!ENTITY dark-red "800000">
+  <!ENTITY white "ffffff">
+  <!ENTITY navy-blue "000080">
+  <!ENTITY royal-purple "800080">
+  <!ENTITY yellow "ffff00">
+  <!ENTITY magenta "ff00ff">
+  <!ENTITY cyan "00ffff">
+  <!ENTITY bar-width "10">
+  <!ENTITY hand-width "15">
+]>
+
+<settings>
+<!--Windows terminal color codes '008000', '808000', '008080'(aquamarine), 'c0c0c0'(light gray), '808080'(dark gray)-->
+
+    <highlight fg='c0c0c0'>^\[.*?\](?:>|&gt;).*$</highlight>
+    <highlight fg='c0c0c0'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
+    <highlight fg="&green;">^\[DRPrime\]</highlight>
+    <highlight fg="&yellow;">^\[code\]</highlight>
+    <highlight fg="&yellow;">^\[drscripts\]</highlight>
+    <highlight fg="&blue;">^\[Private(?:To)?\]</highlight>
+    <highlight fg="&blue;">^--- Lich:.*</highlight>
+
+    <highlight fg='808000'>^Roundtime.*</highlight>
+    <highlight fg='808000'>^\[Roundtime.*</highlight>
+    <highlight fg='008080'>^Obvious (exit|path).*</highlight>
+    <highlight fg="&cyan;">You also see .*</highlight>
+    <highlight fg="&cyan;">^Also here:.*</highlight>
+    <highlight fg="&dark-red;">which appears dead</highlight>
+    <highlight fg="&red;">^.* backfire.*$</highlight>
+    <highlight fg="&red;">^You get an odd feeling that someone is.*</highlight>
+    <highlight fg="&white;">[^\w]shard</highlight>
+    <highlight fg="&white;">[^\w]arrow</highlight>
+    <highlight fg="&white;">[^\w]bolt</highlight>
+    <highlight fg="&magenta;">^Your formation of a targeting pattern.*</highlight>
+    <highlight fg="&magenta;">^You leap out of hiding.*</highlight>
+    <highlight fg="&magenta;">^.*position yourself behind.*</highlight>
+    <highlight fg="&magenta;">^.*masterfully position yourself to strike.*</highlight>
+    <highlight fg="&magenta;">^.*best shot possible.*</highlight>
+    <highlight fg="&red;">^You feel your pockets get slightly heavier.*</highlight>
+    <highlight fg="&green;">^You feel the weakness imparted by your recent death slowly fade away.*</highlight>
+    <highlight fg="&royal-purple;">^You feel a sudden warmth.*</highlight>
+    <highlight fg="&royal-purple;">^You feel a faint warmth.*</highlight>
+    <highlight fg="&royal-purple;">^The serpent earcuff coils, sensing your danger.*</highlight>
+    <highlight fg="&royal-purple;">^Your wooden medallion warms in response to your danger.*</highlight>
+    <highlight fg="&royal-purple;">^.*JOIN CHARCOAL DIRIGIBLE.*</highlight>
+    <highlight fg="&magenta;">\((?:calmed|dead|flying|hiding|kneeling|prone|sitting|sleeping|stunned)\)</highlight>
+    <highlight fg="&magenta;">.*ruining your hiding place\.$|^You are no longer hidden\.$|^\s*You are (?:stunned|knocked to the ground).*|^You are unable to remain hidden!$|^You are visible again\.$|^You fade into sight\.$|^You fade into view.*|^You feel drained!$|^You have overextended yourself!$|^You feel yourself going into shock!$</highlight>
+    <highlight fg="&magenta;">^.*(?:falls slack against the floor|falls slack against the ground|falls to the floor, motionless|falls to the ground dead|falls to the ground motionless|and dies|and lies still|goes still|going still)\.$</highlight>
+    <highlight fg="&magenta;">^.* is stunned!$|^You come out of hiding\.$</highlight>
+    <highlight fg="&magenta;">.*ruining your hiding place\.$|^You are no longer hidden\.$|^\s*You are (?:stunned|knocked to the ground).*|^You are unable to remain hidden!$|^You are visible again\.$|^You fade into sight\.$|^You fade into view.*|^You feel drained!$|^You have overextended yourself!$|^You feel yourself going into shock!$</highlight>
+    <highlight fg="&green;">^.*\*\*\*STATUS\*\*\*.*</highlight>
+
+    <!--- Death Messages --> 
+    
+    <highlight fg="&dark-red;">^An armored warklin crumbles.*</highlight>
+    <highlight fg="&dark-red;">^.*a grating bellow.*</highlight>
+    <highlight fg="&dark-red;">^The scout gurgles.*</highlight>
+    <highlight fg="&dark-red;">^The scout coughs up.*</highlight>
+    <highlight fg="&dark-red;">^The wind hound lets loose.*</highlight>
+    <highlight fg="&dark-red;">^A zombie stomper falls belly-up.*</highlight>
+    <highlight fg="&dark-red;">^.*eyes glaze over.*</highlight>
+    <highlight fg="&dark-red;">^.*closing its eyes forever.*</highlight>
+    <highlight fg="&dark-red;">^.*eyes roll back in its head.*</highlight>
+    <highlight fg="&dark-red;">^.*one last time and collapses.*</highlight>
+    <highlight fg="&dark-red;">^A storm bull expires.*</highlight> 
+
+    <highlight fg="&white;">^You begin chanting a mantra.*</highlight>
+    <highlight fg="&white;">^You trace a.*</highlight>
+
+    <!-- Character Name Highlights-->
+    <highlight fg="&royal-purple;">[Ee]mbrace</highlight>
+    <highlight fg="&monokai-magenta;">[Ss]arvatt</highlight>
+    <highlight fg="&monokai-magenta;">[Ss]erature</highlight>
+    <highlight fg="&monokai-magenta;">[Tt]hevelar</highlight>
+    <highlight fg="&monokai-magenta;">[Vv]ichrae</highlight>
+    <!-- Script commands sent to game-->
+    <highlight fg='584848'>^\[[\w-]+\]></highlight>
+    <preset id='whisper' fg="&yellow;"/>
+    <preset id='speech' fg="&yellow;"/>
+    <preset id='roomName' fg="&green;"/>
+    <preset id='monsterbold' fg="&red;"/>
+    <preset id='familiar' bg='008080'/>
+    <preset id='thoughts' bg='008080'/>
+    <!--<key id='alt'>
+        <key id='f' macro='something'/>
+    </key>-->
+    <key id='enter' action='send_command'/>
+    <key id='left' action='cursor_left'/>
+    <key id='right' action='cursor_right'/>
+    <key id='ctrl+left' action='cursor_word_left'/>
+    <key id='ctrl+right' action='cursor_word_right'/>
+    <key id='home' action='cursor_home'/>
+    <key id='win_end' action='cursor_end'/>
+    <key id='backspace' action='cursor_backspace'/>
+    <key id='win_backspace' action='cursor_backspace'/>
+    <key id='ctrl+?' action='cursor_backspace'/>
+    <key id='delete' action='cursor_delete'/>
+    <key id='tab' action='switch_current_window'/>
+    <key id='alt+page_up' action='scroll_current_window_up_one'/>
+    <key id='alt+page_down' action='scroll_current_window_down_one'/>
+    <key id='page_up' action='scroll_current_window_up_page'/>
+    <key id='page_down' action='scroll_current_window_down_page'/>
+    <key id='up' action='previous_command'/>
+    <key id='down' action='next_command'/>
+    <key id='num_enter' action='send_last_command'/>
+    <key id='num_1' macro='\xsw\r'/>
+    <key id='num_2' macro='\xs\r'/>
+    <key id='num_3' macro='\xse\r'/>
+    <key id='num_4' macro='\xw\r'/>
+    <key id='num_5' macro='\xout\r'/>
+    <key id='num_6' macro='\xe\r'/>
+    <key id='num_7' macro='\xnw\r'/>
+    <key id='num_8' macro='\xn\r'/>
+    <key id='num_9' macro='\xne\r'/>
+    <key id='alt+up' action='send_second_last_command'/>
+    <key id='resize' action='resize'/>
+    <key id='ctrl+1' macro='\xstance defensive\r'/>
+    <key id='ctrl+2' macro='\x;e 4.times{ start_script("spin", ["burlap"]); pause 0.5 while Script.running?("spin"); }; 2.times{ start_script("weave-cloth"); pause 0.5 while Script.running?("weave-cloth"); }'/>
+    <key id='ctrl+3' macro='\x;e loop do waitfor("DECLINE"); fput("accept"); fput("stow right"); end'/>
+    <key id='ctrl+4' macro='\x;e loop do start_script("update-shops",[""]); pause 60*60; end'/>
+    <layout id='default'>
+        <window class='text' top='0' left='0' height='8' width='cols/3+10' value='lnet,thoughts,voln' buffer-size='1000' timestamp='true' log='true' />
+        <window class='text' top='0' left='(cols/3)+10' height='8' width='cols/3' value='talk,whispers' buffer-size='1000' timestamp='true' />
+        <window class='text' top='0' left='(2*cols/3)+10' height='8' width='(cols/3)-10' value='death,logons' buffer-size='1000' timestamp='true' log='true'/>
+        <window class='text' top='10' left='0' width='cols-0' height='lines-13' value='main' buffer-size='3000' log='true' bg="&material-grey900;" />
+
+        <window class='indicator' top='lines-3' left='8' height='1' width='1' label='&gt;' value='prompt' fg='ffff00,ffff00'/>
+        <window class='command' top='lines-3' left='10' width='cols-90' height='1' />
+
+        <!-- above bottom bar layout -->
+        <window class='indicator' top='lines-2' left='8' height='1' width='2' label='L:' fg='&white;'/>
+        <window class='indicator' top='lines-2' left='11' height='1' width='&hand-width;' value='left' ul='true'/>
+        <window class='indicator' top='lines-2' left='13 + &hand-width;' height='1' width='2' label='R:' fg='&white;'/>
+        <window class='indicator' top='lines-2' left='16 + &hand-width;' height='1' width='&hand-width;' value="right" ul='true'/>
+        <window class='indicator' top='lines-2' left='13 + (&hand-width; + 3)*2' height='1' width='2' label='S:' fg='&white;'/>
+        <window class='indicator' top='lines-2' left='16 + (&hand-width; + 3)*2' height='1' width='&hand-width;+5' value='spell'/>
+
+        <window class='indicator' top='lines-1' left='34 + (&bar-width;*4) + 4' height='1' width='4' label='STUN' value='stunned' fg='888888,00ffff'/>
+        <window class='indicator' top='lines-1' left='40 + (&bar-width;*4) + 4' height='1' width='3' label='PSN' value='poisoned' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-1' left='45 + (&bar-width;*4) + 4' height='1' width='3' label='DIS' value='diseased' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-1' left='50 + (&bar-width;*4) + 4' height='1' width='3' label='BLD' value='bleeding' fg='888888,0000ff'/>
+
+        <!-- bottom bar layout -->
+        <window class='countdown' top='lines-1' left='8' width='11' height='1' label='rndtime:' value='roundtime' fg='808080,ffffff,ffffff,ffffff' bg='nil,ff0000,0000ff'/>
+        <window class='progress' top='lines-1' left='20' width='&bar-width;' height='1' label='H:' value='health' fg="&white;" bg="&dark-red;"/>
+        <window class='progress' top='lines-1' left='20 + &bar-width; + 1' width='&bar-width;' height='1' label='M:' value='mana' fg="&white;" bg="&blue;"/>
+        <window class='progress' top='lines-1' left='20 + (&bar-width;*2) + 2' width='&bar-width;' height='1' label='Sp:' value='spirit' fg="&white;" bg="&material-purple;"/>
+        <window class='progress' top='lines-1' left='20 + (&bar-width;*3) + 3' width='&bar-width;' height='1' label='St:' value='stamina' fg='&white;' bg='&material-green;'/>
+        <window class='progress' top='lines-1' left='20 + (&bar-width;*4) + 4' width='&bar-width;' height='1' label='C:' value='concentration' fg='&white;' bg='&material-bluegrey;'/>
+
+        <!-- compass -->
+        <window class='indicator' top='lines-3' left='0' height='1' width='1' label='^' value='compass:up'/>
+        <window class='indicator' top='lines-2' left='0' height='1' width='1' label='o' value='compass:out'/>
+        <window class='indicator' top='lines-1' left='0' height='1' width='1' label='v' value='compass:down'/>
+        <window class='indicator' top='lines-3' left='2' width='1' height='1' label="\" value='compass:nw'/>
+        <window class='indicator' top='lines-3' left='6' width='1' height='1' label="/" value='compass:ne'/>
+        <window class='indicator' top='lines-3' left='4' width='1' height='1' label="^" value='compass:n'/>
+        <window class='indicator' top='lines-2' left='2' width='1' height='1' label="&lt;" value='compass:w'/>
+        <window class='indicator' top='lines-2' left='4' width='1' height='1' label="o" value='compass:o'/>
+        <window class='indicator' top='lines-2' left='6' width='1' height='1' label="&gt;" value='compass:e'/>
+        <window class='indicator' top='lines-1' left='2' width='1' height='1' label="/" value='compass:sw'/>
+        <window class='indicator' top='lines-1' left='4' width='1' height='1' label="v" value='compass:s'/>
+        <window class='indicator' top='lines-1' left='6' width='1' height='1' label="\" value='compass:se'/>
+    </layout>
+</settings>
