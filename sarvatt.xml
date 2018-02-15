@@ -1,4 +1,4 @@
-<!DOCTYPE highlight [ 
+<!DOCTYPE highlight [
   <!ENTITY material-green "1B5E20">
   <!ENTITY material-purple "311B92">
   <!ENTITY material-grey900 "212121">
@@ -26,6 +26,8 @@
     <highlight fg='c0c0c0'>^\[.*?\](?:>|&gt;).*$</highlight>
     <highlight fg='c0c0c0'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
     <highlight fg="&green;">^\[DRPrime\]</highlight>
+    <highlight fg="&yellow;">^\[General\]</highlight>
+    <highlight fg="&yellow;">^\[Trade\]</highlight>
     <highlight fg="&yellow;">^\[code\]</highlight>
     <highlight fg="&yellow;">^\[drscripts\]</highlight>
     <highlight fg="&blue;">^\[Private(?:To)?\]</highlight>
@@ -39,9 +41,6 @@
     <highlight fg="&dark-red;">which appears dead</highlight>
     <highlight fg="&red;">^.* backfire.*$</highlight>
     <highlight fg="&red;">^You get an odd feeling that someone is.*</highlight>
-    <highlight fg="&white;">[^\w]shard</highlight>
-    <highlight fg="&white;">[^\w]arrow</highlight>
-    <highlight fg="&white;">[^\w]bolt</highlight>
     <highlight fg="&magenta;">^Your formation of a targeting pattern.*</highlight>
     <highlight fg="&magenta;">^You leap out of hiding.*</highlight>
     <highlight fg="&magenta;">^.*position yourself behind.*</highlight>
@@ -54,6 +53,7 @@
     <highlight fg="&royal-purple;">^The serpent earcuff coils, sensing your danger.*</highlight>
     <highlight fg="&royal-purple;">^Your wooden medallion warms in response to your danger.*</highlight>
     <highlight fg="&royal-purple;">^.*JOIN CHARCOAL DIRIGIBLE.*</highlight>
+    <highlight fg="&royal-purple;">^.*just recovered a rare item from the Grey Raven attackers.*</highlight>
     <highlight fg="&magenta;">\((?:calmed|dead|flying|hiding|kneeling|prone|sitting|sleeping|stunned)\)</highlight>
     <highlight fg="&magenta;">.*ruining your hiding place\.$|^You are no longer hidden\.$|^\s*You are (?:stunned|knocked to the ground).*|^You are unable to remain hidden!$|^You are visible again\.$|^You fade into sight\.$|^You fade into view.*|^You feel drained!$|^You have overextended yourself!$|^You feel yourself going into shock!$</highlight>
     <highlight fg="&magenta;">^.*(?:falls slack against the floor|falls slack against the ground|falls to the floor, motionless|falls to the ground dead|falls to the ground motionless|and dies|and lies still|goes still|going still)\.$</highlight>
@@ -75,15 +75,90 @@
     <highlight fg="&dark-red;">^.*one last time and collapses.*</highlight>
     <highlight fg="&dark-red;">^A storm bull expires.*</highlight> 
 
-    <highlight fg="&white;">^You begin chanting a mantra.*</highlight>
-    <highlight fg="&white;">^You trace a.*</highlight>
-
     <!-- Character Name Highlights-->
-    <highlight fg="&royal-purple;">[Ee]mbrace</highlight>
     <highlight fg="&monokai-magenta;">[Ss]arvatt</highlight>
-    <highlight fg="&monokai-magenta;">[Ss]erature</highlight>
-    <highlight fg="&monokai-magenta;">[Tt]hevelar</highlight>
-    <highlight fg="&monokai-magenta;">[Vv]ichrae</highlight>
+    <highlight fg="&monokai-magenta;">[Ee]ngorged</highlight>
+    <highlight fg="&monokai-magenta;">[Cc]hilling</highlight>
+    <highlight fg="&monokai-magenta;">[Vv]une</highlight>
+    <highlight fg="&monokai-magenta;">[Mm]uten</highlight>
+    <highlight fg="&royal-purple;">[Ee]mbrace</highlight>
+    <highlight fg="&green;">[Tt]hevelar</highlight>
+    <highlight fg="&green;">[Ff]lixx</highlight>
+    <highlight fg="&green;">[Tt]yesha</highlight>
+    <highlight fg="&green;">[Ss]olire</highlight>
+    <highlight fg="&green;">[Zz]asana</highlight>
+    <highlight fg="&yellow;">[Aa]tanamir</highlight>
+    <highlight fg="&yellow;">[Tt]horn</highlight>
+    <highlight fg="&yellow;">[Rr]emigius</highlight>
+    <highlight fg="&yellow;">[Jj]orvald</highlight>
+    <highlight fg="&yellow;">[Mm]align</highlight>
+    <highlight fg="&yellow;">[Ww]yrt</highlight>
+    <highlight fg="&yellow;">[Ee]dahla</highlight>
+    <highlight fg="&yellow;">[Kk]yrla</highlight>
+    <highlight fg="&yellow;">[Dd]ulcinia</highlight>
+    <highlight fg="&yellow;">[Vv]ichrae</highlight>
+    <highlight fg="&yellow;">[Aa]narathiel</highlight>
+    <highlight fg="&yellow;">[Jj]aessa</highlight>
+    <highlight fg="&yellow;">[Ss]olancera</highlight>
+    <highlight fg="&yellow;">[Ss]aulthor</highlight>
+    <highlight fg="&yellow;">[Cc]harlize</highlight>
+    <highlight fg="&yellow;">[Bb]arder</highlight>
+    <highlight fg="&yellow;">[Aa]urayn</highlight>
+    <highlight fg="&yellow;">[Aa]treall</highlight>
+    <highlight fg="&yellow;">[Ss]pookay</highlight>
+    <highlight fg="&yellow;">[Mm]saia</highlight>
+    <highlight fg="&yellow;">[Gg]allifreius</highlight>
+    <highlight fg="&yellow;">[Rr]emedi</highlight>
+    <highlight fg="&yellow;">[Rr]hoslyn</highlight>
+    <highlight fg="&yellow;">[Tt]illmen</highlight>
+    <highlight fg="&yellow;">[Bb]eeya</highlight>
+    <highlight fg="&yellow;">[Aa]nnandale</highlight>
+    <highlight fg="&yellow;">[Mm]ilanie</highlight>
+    <highlight fg="&yellow;">[Bb]inu</highlight>
+    <highlight fg="&yellow;">[Cc]huno</highlight>
+    <highlight fg="&yellow;">[Mm]elbourne</highlight>
+    <highlight fg="&yellow;">[Ss]sarek</highlight>
+    <highlight fg="&yellow;">[Yy]ndass</highlight>
+    <highlight fg="&yellow;">[Nn]atarian</highlight>
+    <highlight fg="&yellow;">[Nn]arash</highlight>
+    <highlight fg="&yellow;">[Nn]atheras</highlight>
+    <highlight fg="&yellow;">[Cc]rannach</highlight>
+    <highlight fg="&yellow;">[Jj]onas</highlight>
+    <highlight fg="&yellow;">[Rr]iphik</highlight>
+    <highlight fg="&yellow;">[Gg]iulietta</highlight>
+    <highlight fg="&yellow;">[Gg]abellia</highlight>
+    <highlight fg="&yellow;">[Ss]heltim</highlight>
+    <highlight fg="&yellow;">[Mm]ajorly</highlight>
+    <highlight fg="&yellow;">[Ee]verics</highlight>
+    <highlight fg="&yellow;">[Aa]rtinos</highlight>
+    <highlight fg="&yellow;">[Ff]lyntt</highlight>
+    <highlight fg="&yellow;">[Tt]alinel</highlight>
+    <highlight fg="&yellow;">[Mm]issah</highlight>
+    <highlight fg="&yellow;">[Ee]thun</highlight>
+    <highlight fg="&yellow;">[Ff]eltzer</highlight>
+    <highlight fg="&yellow;">[Ee]zzra</highlight>
+    <highlight fg="&yellow;">[Gg]igondas</highlight>
+    <highlight fg="&yellow;">[Rr]isima</highlight>
+    <highlight fg="&yellow;">[Jj]hien</highlight>
+    <highlight fg="&yellow;">[Mm]elduran</highlight>
+    <highlight fg="&yellow;">[Kk]erizon</highlight>
+    <highlight fg="&yellow;">[Aa]radar</highlight>
+    <highlight fg="&yellow;">[Ll]eustyin</highlight>
+    <highlight fg="&yellow;">[Zz]haryn</highlight>
+
+    <!-- Trolls --> 
+    <highlight fg="&red;">[Ff]ahijeck</highlight>
+    <highlight fg="&red;">[Mm]oriora</highlight>
+    <highlight fg="&red;">[Zz]ehira</highlight>
+    <highlight fg="&red;">[Cc]ayra</highlight>
+    <highlight fg="&red;">[Jj]ondong</highlight>
+    <highlight fg="&red;">[Nn]idaeya</highlight> 
+    <highlight fg="&red;">[Aa]rtilius</highlight>
+    <highlight fg="&red;">[Ii]ssidos</highlight>
+    <highlight fg="&red;">[Gg]ander</highlight>
+    <highlight fg="&red;">[Aa]nnieka</highlight>
+    <highlight fg="&red;">[Aa]umaru</highlight>
+
     <!-- Script commands sent to game-->
     <highlight fg='584848'>^\[[\w-]+\]></highlight>
     <preset id='whisper' fg="&yellow;"/>
@@ -130,26 +205,28 @@
     <key id='ctrl+3' macro='\x;e loop do waitfor("DECLINE"); fput("accept"); fput("stow right"); end'/>
     <key id='ctrl+4' macro='\x;e loop do start_script("update-shops",[""]); pause 60*60; end'/>
     <layout id='default'>
-        <window class='text' top='0' left='0' height='8' width='cols/3+10' value='lnet,thoughts,voln' buffer-size='1000' timestamp='true' log='true' />
-        <window class='text' top='0' left='(cols/3)+10' height='8' width='cols/3' value='talk,whispers' buffer-size='1000' timestamp='true' />
-        <window class='text' top='0' left='(2*cols/3)+10' height='8' width='(cols/3)-10' value='death,logons' buffer-size='1000' timestamp='true' log='true'/>
-        <window class='text' top='10' left='0' width='cols-0' height='lines-13' value='main' buffer-size='3000' log='true' bg="&material-grey900;" />
+        <window class='text' top='10' left='0' width='cols-0' height='lines-13' value='main' buffer-size='3000' log='true' bg="&black;" />
+        <window class='text' top='0' left='0' height='8' width='(cols/3)+20' value='lnet,thoughts,voln' buffer-size='1000' timestamp='true' log='true' />
+        <window class='text' top='0' left='(cols/3)+20' height='8' width='(cols/3)' value='talk,whispers,ooc' buffer-size='1000' timestamp='true' />
+        <window class='text' top='0' left='(2*cols/3)+20' height='8' width='(cols/3)-20' value='death,logons' buffer-size='1000' timestamp='true' log='true'/>
 
         <window class='indicator' top='lines-3' left='8' height='1' width='1' label='&gt;' value='prompt' fg='ffff00,ffff00'/>
-        <window class='command' top='lines-3' left='10' width='cols-90' height='1' />
+        <window class='command' top='lines-3' left='10' width='cols-10' height='1' />
 
         <!-- above bottom bar layout -->
         <window class='indicator' top='lines-2' left='8' height='1' width='2' label='L:' fg='&white;'/>
-        <window class='indicator' top='lines-2' left='11' height='1' width='&hand-width;' value='left' ul='true'/>
+        <window class='indicator' top='lines-2' left='11' height='1' width='&hand-width;' value='left'/>
         <window class='indicator' top='lines-2' left='13 + &hand-width;' height='1' width='2' label='R:' fg='&white;'/>
-        <window class='indicator' top='lines-2' left='16 + &hand-width;' height='1' width='&hand-width;' value="right" ul='true'/>
+        <window class='indicator' top='lines-2' left='16 + &hand-width;' height='1' width='&hand-width;' value="right" />
         <window class='indicator' top='lines-2' left='13 + (&hand-width; + 3)*2' height='1' width='2' label='S:' fg='&white;'/>
-        <window class='indicator' top='lines-2' left='16 + (&hand-width; + 3)*2' height='1' width='&hand-width;+5' value='spell'/>
+        <window class='indicator' top='lines-2' left='16 + (&hand-width; + 3)*2' height='1' width='&hand-width;+10' value='spell'/>
 
         <window class='indicator' top='lines-1' left='34 + (&bar-width;*4) + 4' height='1' width='4' label='STUN' value='stunned' fg='888888,00ffff'/>
         <window class='indicator' top='lines-1' left='40 + (&bar-width;*4) + 4' height='1' width='3' label='PSN' value='poisoned' fg='888888,0000ff'/>
         <window class='indicator' top='lines-1' left='45 + (&bar-width;*4) + 4' height='1' width='3' label='DIS' value='diseased' fg='888888,0000ff'/>
-        <window class='indicator' top='lines-1' left='50 + (&bar-width;*4) + 4' height='1' width='3' label='BLD' value='bleeding' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='34 + (&bar-width;*4) + 4' height='1' width='4' label='HIDE' value='hidden' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='40 + (&bar-width;*4) + 4' height='1' width='4' label='INV' value='invisible' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='45 + (&bar-width;*4) + 4' height='1' width='3' label='BLD' value='bleeding' fg='888888,0000ff'/>
 
         <!-- bottom bar layout -->
         <window class='countdown' top='lines-1' left='8' width='11' height='1' label='rndtime:' value='roundtime' fg='808080,ffffff,ffffff,ffffff' bg='nil,ff0000,0000ff'/>
@@ -160,17 +237,17 @@
         <window class='progress' top='lines-1' left='20 + (&bar-width;*4) + 4' width='&bar-width;' height='1' label='C:' value='concentration' fg='&white;' bg='&material-bluegrey;'/>
 
         <!-- compass -->
-        <window class='indicator' top='lines-3' left='0' height='1' width='1' label='^' value='compass:up'/>
-        <window class='indicator' top='lines-2' left='0' height='1' width='1' label='o' value='compass:out'/>
-        <window class='indicator' top='lines-1' left='0' height='1' width='1' label='v' value='compass:down'/>
-        <window class='indicator' top='lines-3' left='2' width='1' height='1' label="\" value='compass:nw'/>
-        <window class='indicator' top='lines-3' left='6' width='1' height='1' label="/" value='compass:ne'/>
-        <window class='indicator' top='lines-3' left='4' width='1' height='1' label="^" value='compass:n'/>
-        <window class='indicator' top='lines-2' left='2' width='1' height='1' label="&lt;" value='compass:w'/>
-        <window class='indicator' top='lines-2' left='4' width='1' height='1' label="o" value='compass:o'/>
-        <window class='indicator' top='lines-2' left='6' width='1' height='1' label="&gt;" value='compass:e'/>
-        <window class='indicator' top='lines-1' left='2' width='1' height='1' label="/" value='compass:sw'/>
-        <window class='indicator' top='lines-1' left='4' width='1' height='1' label="v" value='compass:s'/>
-        <window class='indicator' top='lines-1' left='6' width='1' height='1' label="\" value='compass:se'/>
+        <window class='indicator' top='lines-3' left='0' height='1' width='1' label='^' value='compass:up' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='0' height='1' width='1' label='o' value='compass:out' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-1' left='0' height='1' width='1' label='v' value='compass:down' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-3' left='2' width='1' height='1' label="\" value='compass:nw' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-3' left='6' width='1' height='1' label="/" value='compass:ne' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-3' left='4' width='1' height='1' label="^" value='compass:n' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='2' width='1' height='1' label="&lt;" value='compass:w'  fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='4' width='1' height='1' label="o" value='compass:o' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-2' left='6' width='1' height='1' label="&gt;" value='compass:e' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-1' left='2' width='1' height='1' label="/" value='compass:sw' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-1' left='4' width='1' height='1' label="v" value='compass:s' fg='888888,0000ff'/>
+        <window class='indicator' top='lines-1' left='6' width='1' height='1' label="\" value='compass:se' fg='888888,0000ff'/>
     </layout>
 </settings>
