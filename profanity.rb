@@ -1716,13 +1716,11 @@ Thread.new {
 						if current_stream == 'death'
 							# fixme: has been vaporized!
 							# fixme: ~ off to a rough start
-							if text =~ /^\s\*\s(The death cry of )?([A-Z][a-z]+) (?:just bit the dust!|echoes in your mind!)/
-								front_count = 3
-								front_count += 17 if $1
-								name = $2
+							if text =~ /^\s\*\s([A-Z][a-z]+) was just struck down!/
+								name = $1
 								text = "#{name} #{Time.now.strftime('%l:%M%P').sub(/^0/, '')}"
 								line_colors.each { |h|
-									h[:start] -= front_count
+									h[:start] -= 3
 									h[:end] = [ h[:end], name.length ].min
 								}
 								line_colors.delete_if { |h| h[:start] >= h[:end] }
