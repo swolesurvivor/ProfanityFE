@@ -1716,7 +1716,7 @@ Thread.new {
 						if current_stream == 'death'
 							# fixme: has been vaporized!
 							# fixme: ~ off to a rough start
-							if text =~ /^\s\*\s([A-Z][a-z]+) was just struck down!/
+							if text =~ /^\s\*\s([A-Z][a-z]+) (?:was just struck down!|just disintegrated!)/
 								name = $1
 								text = "#{name} #{Time.now.strftime('%l:%M%P').sub(/^0/, '')}"
 								line_colors.each { |h|
