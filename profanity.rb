@@ -38,6 +38,64 @@ Curses.start_color
 Curses.cbreak
 Curses.noecho
 
+class Skill
+	def initialize(name, ranks, percent, mindstate)
+		@name = name
+		@ranks = ranks
+		@percent = percent
+		@mindstate = mindstate
+	end
+
+	def to_s
+		"%8s:%5d %2d%% [%2d/34]" % [@name, @ranks, @percent, @mindstate]
+	end
+end
+
+class ExpWindow < Curses::Window
+	@@list = Array.new
+
+	@skill_list = ['Shield', 'Lt Armor', 'Chain', 'Brig', 'Defend', 'Parry', 'SE', 'LE', '2HE', 'SB', 'LB', '2HB', 'Bow', 'Crossbow', 'LT', 'HT', 'Brawling', 'Melee', 'Missile', 'Magic', 'Arcana', 'Attune', 'Aug', 'Debil', 'TM', 'Util', 'Warding', 'Evasion', 'Athletic', 'Perc', 'Stealth', 'Locks', 'Appraise', 'Mechlore', 'Scholar']
+
+	def ExpWindow.list
+		@@list
+	end
+
+	def initialize(*args)
+		skills = Hash.new
+		super(*args)
+	end
+
+	def update(text)
+		STDERR.puts("received: " + text)
+		if text =~ /(\w+):\s*(\d+) (\d+)\%  \[\s*(\d+)\/34\]/
+			STDERR.puts("matched text")
+			name = $1
+			ranks = $2
+			percent = $3
+			mindstate = $4
+
+			unless skill_list.include?(name)
+				STDERR.puts("Unknown skill: %s" % name)
+				@skill_list.push(name)
+			end	
+
+			@skills[name] = Skill.new(name, ranks, percent, mindstate)
+			STDERR.puts("Added: " + @skills[name])
+			redraw
+		end
+		STDERR.puts("done updating")
+	end
+
+	def redraw
+		clear
+		skill_list.each do |skill|
+			if @skills[skill]
+				addstr(@skills[skill] + '\n')	
+			end
+		end
+	end
+end
+
 class TextWindow < Curses::Window
 	attr_reader :color_stack, :buffer
 	attr_accessor :scrollbar, :indent_word_wrap, :layout, :time_stamp, :logger
@@ -893,6 +951,9 @@ load_layout = proc { |layout_id|
 								stream_handler[str] = window
 							}
 						end
+					elsif e.attributes['class'] == 'exp'
+						window = ExpWindow.new(height, width - 1, top, left)
+						stream_handler['exp'] = window
 					elsif e.attributes['class'] == 'countdown'
 						if e.attributes['value'] and (window = previous_countdown_handler[e.attributes['value']])
 							previous_countdown_handler[e.attributes['value']] = nil
@@ -1707,6 +1768,7 @@ Thread.new {
 
 			unless text.empty?
 				if current_stream
+					STDERR.puts(current_stream)
 					if current_stream == 'thoughts'
 						if text =~ /^\[.+?\]\-[A-z]+\:[A-Z][a-z]+\: "|^\[server\]\: /
 							current_stream = 'lnet'
@@ -1731,6 +1793,9 @@ Thread.new {
 								}
 								line_colors.push(h)
 							end
+						elsif current_stream == 'exp'
+							STDERR.puts('exp: ' + text)
+							stream_handler['exp'].update(text)
 						elsif current_stream == 'logons'
 							foo = { 'joins the adventure with little fanfare.' => '007700', 'just sauntered into the adventure with an annoying tune on his lips.' => '007700', 'just wandered into another adventure.' => '007700', 'just limped in for another adventure.' => '007700', 'snuck out of the shadow he was hiding in.' => '007700', 'joins the adventure with a gleam in her eye.' => '007700', 'joins the adventure with a gleam in his eye.' => '007700', 'comes out from within the shadows with renewed vigor.' => '007700', 'just crawled into the adventure.' => '007700', 'has woken up in search of new ale!' => '007700', 'just popped into existance.' => '007700', 'has joined the adventure after escaping another.' => '007700',  'joins the adventure.' => '007700', 'returns home from a hard day of adventuring.' => '777700', 'has left to contemplate the life of a warrior.' => '777700', 'just sauntered off-duty to get some rest.' => '777700', 'departs from the adventure with little fanfare.' => '777700', 'limped away from the adventure for now.' => '777700', 'thankfully just returned home to work on a new tune.' => '777700', 'fades swiftly into the shadows.' => '777700', 'retires from the adventure for now.' => '777700', 'just found a shadow to hide out in.' => '777700', 'quietly departs the adventure.' => '777700', 'has disconnected.' => 'aa7733' }
 							if text =~ /^\s\*\s([A-Z][a-z]+) (#{foo.keys.join('|')})/
@@ -1966,7 +2031,11 @@ Thread.new {
 						new_stream = $2
 						game_text = line.slice!(0, start_pos)
 						handle_game_text.call(game_text)
-						current_stream = new_stream
+						if new_stream =~ /^exp/
+							current_stream = 'exp'
+						else 
+							current_stream = new_stream
+						end
 					elsif xml =~ /^<popStream/ or xml == '</component>'
 						game_text = line.slice!(0, start_pos)
 						handle_game_text.call(game_text)
