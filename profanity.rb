@@ -47,52 +47,58 @@ class Skill
 	end
 
 	def to_s
-		"%8s:%5d %2d%% [%2d/34]" % [@name, @ranks, @percent, @mindstate]
+		"%8s:%5d %2s%% [%2s/34]" % [@name, @ranks, @percent, @mindstate]
+	end
+
+	def to_str
+		"%8s:%5d %2s%% [%2s/34]" % [@name, @ranks, @percent, @mindstate]
 	end
 end
 
 class ExpWindow < Curses::Window
 	@@list = Array.new
 
-	@skill_list = ['Shield', 'Lt Armor', 'Chain', 'Brig', 'Defend', 'Parry', 'SE', 'LE', '2HE', 'SB', 'LB', '2HB', 'Bow', 'Crossbow', 'LT', 'HT', 'Brawling', 'Melee', 'Missile', 'Magic', 'Arcana', 'Attune', 'Aug', 'Debil', 'TM', 'Util', 'Warding', 'Evasion', 'Athletic', 'Perc', 'Stealth', 'Locks', 'Appraise', 'Mechlore', 'Scholar']
 
 	def ExpWindow.list
 		@@list
 	end
 
 	def initialize(*args)
-		skills = Hash.new
+		@skills = Hash.new
+		@skill_list = ['Shield', 'Lt Armor', 'Chain', 'Brig', 'Defend', 'Parry', 'SE', 'LE', '2HE', 'SB', 'LB', '2HB', 'Bow', 'Crossbow', 'LT', 'HT', 'Brawling', 'Melee', 'Missile', 'Magic', 'Arcana', 'Attune', 'Aug', 'Debil', 'TM', 'Util', 'Warding', 'Astro', 'Evasion', 'Athletic', 'Perc', 'Stealth', 'Locks', 'Appraise', 'Mechlore', 'Scholar']
+		@@list.push(self)
 		super(*args)
 	end
 
-	def update(text)
-		STDERR.puts("received: " + text)
-		if text =~ /(\w+):\s*(\d+) (\d+)\%  \[\s*(\d+)\/34\]/
-			STDERR.puts("matched text")
-			name = $1
+	def add_string(text, line_colors)
+		if text =~ /(.+):\s*(\d+) (\d+)\%  \[\s*(\d+)\/34\]/
+			name = $1.strip
 			ranks = $2
 			percent = $3
 			mindstate = $4
-
-			unless skill_list.include?(name)
-				STDERR.puts("Unknown skill: %s" % name)
-				@skill_list.push(name)
+			
+			unless @skill_list.include?(name)
+			  STDERR.puts("Unknown skill: %s" % name)
+    		@skill_list.push(name)
 			end	
 
-			@skills[name] = Skill.new(name, ranks, percent, mindstate)
-			STDERR.puts("Added: " + @skills[name])
+			skill = Skill.new(name, ranks, percent, mindstate)
+			@skills[name] = skill
+			
 			redraw
 		end
-		STDERR.puts("done updating")
 	end
 
 	def redraw
 		clear
-		skill_list.each do |skill|
+		setpos(0,0)
+		@skill_list.each do |skill|
 			if @skills[skill]
-				addstr(@skills[skill] + '\n')	
+				addstr(@skills[skill])	
+				addstr("\n")
 			end
 		end
+		refresh
 	end
 end
 
@@ -476,6 +482,7 @@ key_action = Hash.new
 need_prompt = false
 prompt_text = ">"
 stream_handler = Hash.new
+exp_window = nil
 indicator_handler = Hash.new
 progress_handler = Hash.new
 countdown_handler = Hash.new
@@ -952,8 +959,7 @@ load_layout = proc { |layout_id|
 							}
 						end
 					elsif e.attributes['class'] == 'exp'
-						window = ExpWindow.new(height, width - 1, top, left)
-						stream_handler['exp'] = window
+						stream_handler['exp'] = ExpWindow.new(height, width - 1, top, left)
 					elsif e.attributes['class'] == 'countdown'
 						if e.attributes['value'] and (window = previous_countdown_handler[e.attributes['value']])
 							previous_countdown_handler[e.attributes['value']] = nil
@@ -1768,7 +1774,6 @@ Thread.new {
 
 			unless text.empty?
 				if current_stream
-					STDERR.puts(current_stream)
 					if current_stream == 'thoughts'
 						if text =~ /^\[.+?\]\-[A-z]+\:[A-Z][a-z]+\: "|^\[server\]\: /
 							current_stream = 'lnet'
@@ -1793,9 +1798,6 @@ Thread.new {
 								}
 								line_colors.push(h)
 							end
-						elsif current_stream == 'exp'
-							STDERR.puts('exp: ' + text)
-							stream_handler['exp'].update(text)
 						elsif current_stream == 'logons'
 							foo = { 'joins the adventure with little fanfare.' => '007700', 'just sauntered into the adventure with an annoying tune on his lips.' => '007700', 'just wandered into another adventure.' => '007700', 'just limped in for another adventure.' => '007700', 'snuck out of the shadow he was hiding in.' => '007700', 'joins the adventure with a gleam in her eye.' => '007700', 'joins the adventure with a gleam in his eye.' => '007700', 'comes out from within the shadows with renewed vigor.' => '007700', 'just crawled into the adventure.' => '007700', 'has woken up in search of new ale!' => '007700', 'just popped into existance.' => '007700', 'has joined the adventure after escaping another.' => '007700',  'joins the adventure.' => '007700', 'returns home from a hard day of adventuring.' => '777700', 'has left to contemplate the life of a warrior.' => '777700', 'just sauntered off-duty to get some rest.' => '777700', 'departs from the adventure with little fanfare.' => '777700', 'limped away from the adventure for now.' => '777700', 'thankfully just returned home to work on a new tune.' => '777700', 'fades swiftly into the shadows.' => '777700', 'retires from the adventure for now.' => '777700', 'just found a shadow to hide out in.' => '777700', 'quietly departs the adventure.' => '777700', 'has disconnected.' => 'aa7733' }
 							if text =~ /^\s\*\s([A-Z][a-z]+) (#{foo.keys.join('|')})/
@@ -1814,6 +1816,8 @@ Thread.new {
 								}
 								line_colors.push(h)
 							end
+						elsif current_stream == 'exp'
+							window = stream_handler['exp']
 						end
 						unless text =~ /^\[server\]: "(?:kill|connect)/
 							window.add_string(text, line_colors)
