@@ -65,7 +65,7 @@ class ExpWindow < Curses::Window
 
 	def initialize(*args)
 		@skills = Hash.new
-		@skill_list = ['Shield', 'Lt Armor', 'Chain', 'Brig', 'Defend', 'Parry', 'SE', 'LE', '2HE', 'SB', 'LB', '2HB', 'Bow', 'Crossbow', 'LT', 'HT', 'Brawling', 'Melee', 'Missile', 'Magic', 'Arcana', 'Attune', 'Aug', 'Debil', 'TM', 'Util', 'Warding', 'Astro', 'Evasion', 'Athletic', 'Perc', 'Stealth', 'Locks', 'Appraise', 'Mechlore', 'Scholar']
+		@skill_list = ['Shield', 'Lt Armor', 'Chain', 'Brig', 'Defend', 'Parry', 'SE', 'LE', '2HE', 'SB', 'LB', '2HB', 'Bow', 'Crossbow', 'LT', 'HT', 'Brawling', 'Melee', 'Missile', 'Magic', 'Arcana', 'Attune', 'Aug', 'Debil', 'TM', 'Util', 'Warding', 'Astro', 'Evasion', 'Athletic', 'Perc', 'Stealth', 'Locks', 'Skinning', 'Appraise', 'Mechlore', 'Scholar', 'Tactics']
 		@@list.push(self)
 		super(*args)
 	end
