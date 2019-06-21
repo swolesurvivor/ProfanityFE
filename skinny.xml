@@ -229,10 +229,11 @@ You feel fully prepared to cast your spell.
     <highlight fg='00ff00'>^You sense your ability to thwart incoming magics slowly return.*</highlight>    
 
     <layout id='default'>  
-      <window class='text' top='6' left='0' width='cols-30' height='lines-8' value='main' buffer-size='2000' log='true' bg='290055'/>
-      <window class='exp' top='6' left='cols-30' width='30' height='lines-8' value='exp' buffer-size='2000' log='true' bg='290055'/>
-      <window class='text' top='0' left='0' height='5' width='cols/3*2' value='lnet,thoughts,voln' buffer-size='1000' log='true' bg='290055'/>
-        <window class='text' top='0' left='cols/3*2' height='5' width='cols/3-5' value='talk,whispers' buffer-size='1000' bg='290055'/>
+      <window class='text' top='11' left='0' width='cols-35' height='lines-13' value='main' buffer-size='2000' log='true' bg='290055'/>
+      <window class='exp' top='11' left='cols-35' width='35' height='lines-23' value='exp' buffer-size='2000' log='true' bg='290055'/>
+      <window class='percWindow' top='lines-12' left='cols-35' width='35' height='10' value='percWindow' buffer-size='2000' log='true' bg='290055'/>
+      <window class='text' top='0' left='0' height='10' width='cols/3*2' value='lnet,thoughts,voln' buffer-size='1000' log='true' bg='290055'/>
+        <window class='text' top='0' left='cols/3*2' height='10' width='cols/3-5' value='talk,whispers' buffer-size='1000' bg='290055'/>
 
       <window class='indicator' top='lines-2' left='0' height='1' width='1' label='&gt;' value='prompt' fg='800000,800000'/>
         <window class='command' top='lines-2' left='1' width='cols-13' height='1' />

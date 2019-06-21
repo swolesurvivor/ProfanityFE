@@ -56,8 +56,9 @@ class Skill
 end
 
 class ExpWindow < Curses::Window
+	attr_reader :color_stack, :buffer
+	attr_accessor :scrollbar, :indent_word_wrap, :layout, :time_stamp, :logger
 	@@list = Array.new
-
 
 	def ExpWindow.list
 		@@list
@@ -65,10 +66,22 @@ class ExpWindow < Curses::Window
 
 	def initialize(*args)
 		@skills = Hash.new
-		@skill_list = ['Shield', 'Lt Armor', 'Chain', 'Brig', 'Defend', 'Parry', 'SE', 'LE', '2HE', 'SB', 'LB', '2HB', 'Bow', 'Crossbow', 'LT', 'HT', 'Brawling', 'Melee', 'Missile', 'Magic', 'Arcana', 'Attune', 'Aug', 'Debil', 'TM', 'Util', 'Warding', 'Astro', 'Evasion', 'Athletic', 'Perc', 'Stealth', 'Locks', 'Skinning', 'Appraise', 'Mechlore', 'Scholar', 'Tactics']
+    @open = false
 		@@list.push(self)
 		super(*args)
 	end
+
+  def delete_skill
+    if @current_skill
+      @skills.delete(@current_skill)
+      redraw
+      @current_skill = ""
+    end
+  end
+
+  def set_current(skill)
+    @current_skill = skill
+  end
 
 	def add_string(text, line_colors)
 		if text =~ /(.+):\s*(\d+) (\d+)\%  \[\s*(\d+)\/34\]/
@@ -77,29 +90,57 @@ class ExpWindow < Curses::Window
 			percent = $3
 			mindstate = $4
 			
-			unless @skill_list.include?(name)
-			  STDERR.puts("Unknown skill: %s" % name)
-    		@skill_list.push(name)
-			end	
-
 			skill = Skill.new(name, ranks, percent, mindstate)
-			@skills[name] = skill
-			
-			redraw
+			@skills[@current_skill] = skill
+      redraw
+      @current_skill = ""
 		end
 	end
 
 	def redraw
 		clear
 		setpos(0,0)
-		@skill_list.each do |skill|
-			if @skills[skill]
-				addstr(@skills[skill])	
-				addstr("\n")
-			end
+    @skills.sort.each do |name, skill|
+      addstr(skill)	
+      addstr("\n")
 		end
 		refresh
 	end
+end
+
+class PercWindow < Curses::Window
+	attr_reader :color_stack, :buffer
+	attr_accessor :scrollbar, :indent_word_wrap, :layout, :time_stamp, :logger
+  @@list = Array.new
+  
+	def ExpWindow.list
+		@@list
+	end
+
+  def initialize(*args)
+    @@list.push(self)
+    super(*args)
+  end
+
+  def add_string(text, line_colors)
+    addstr(text)
+    addstr("\n")
+    refresh
+  end
+
+  def clear_spells
+    clear
+    setpos(0, 0)
+  end
+
+  def redraw
+    clear
+    setpos(0, 0)
+    @spells.each do |spell|
+      addstr(spell)
+      addstr("\n")
+    end
+  end
 end
 
 class TextWindow < Curses::Window
@@ -960,6 +1001,10 @@ load_layout = proc { |layout_id|
 						end
 					elsif e.attributes['class'] == 'exp'
 						stream_handler['exp'] = ExpWindow.new(height, width - 1, top, left)
+            stream_handler['exp'].logger = logger
+          elsif e.attributes['class'] == 'percWindow'
+            stream_handler['percWindow'] = PercWindow.new(height, width - 1, top, left)
+            stream_handler['percWindow'].logger = logger
 					elsif e.attributes['class'] == 'countdown'
 						if e.attributes['value'] and (window = previous_countdown_handler[e.attributes['value']])
 							previous_countdown_handler[e.attributes['value']] = nil
@@ -1818,6 +1863,8 @@ Thread.new {
 							end
 						elsif current_stream == 'exp'
 							window = stream_handler['exp']
+            elsif current_stream == 'percWindow'
+              window = stream_handler['percWindow']
 						end
 						unless text =~ /^\[server\]: "(?:kill|connect)/
 							window.add_string(text, line_colors)
@@ -2033,16 +2080,23 @@ Thread.new {
 						end
 					elsif xml =~ /^<(?:pushStream|component) id=("|')(.*?)\1[^>]*\/?>$/
 						new_stream = $2
-						game_text = line.slice!(0, start_pos)
-						handle_game_text.call(game_text)
-						if new_stream =~ /^exp/
+						if new_stream =~ /^exp (\w+)/
 							current_stream = 'exp'
+              stream_handler['exp'].set_current($1) if stream_handler['exp']
+            elsif new_stream =~ /^percWindow/
+              current_stream = 'percWindow'
+              stream_handler['percWindow'].clear_spells if stream_handler['percWindow']
 						else 
 							current_stream = new_stream
 						end
+						game_text = line.slice!(0, start_pos)
+						handle_game_text.call(game_text)
 					elsif xml =~ /^<popStream/ or xml == '</component>'
 						game_text = line.slice!(0, start_pos)
 						handle_game_text.call(game_text)
+            if current_stream == 'exp' and stream_handler['exp']
+              stream_handler['exp'].delete_skill
+            end
 						current_stream = nil
 					elsif xml =~ /^<progressBar/
 						nil
